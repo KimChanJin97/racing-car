@@ -2,7 +2,7 @@ package racingcar.exception;
 
 public enum ExceptionStatus {
 
-    BAD_REQUEST(Status.BAD_REQUEST, 500);
+    BAD_REQUEST(Status.BAD_REQUEST, 400);
 
     private final Status status;
     private final int statusCode;

@@ -5,7 +5,9 @@ import racingcar.exception.Status;
 
 public enum GameExceptionType implements ExceptionType {
 
-    GAME_COUNT_MUST_OVER_ZERO(Status.BAD_REQUEST, 2001, "시도할 횟수는 0 이상이어야 합니다.");
+    GAME_COUNT_MUST_NUMBER(Status.BAD_REQUEST, 2000, "게임 횟수는 숫자이어야 합니다."),
+    GAME_COUNT_MUST_OVER_ZERO(Status.BAD_REQUEST, 2001, "시도할 횟수는 0 이상이어야 합니다."),
+    ;
 
     private final Status status;
     private final int exceptionCode;

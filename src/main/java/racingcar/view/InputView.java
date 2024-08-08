@@ -1,15 +1,15 @@
 package racingcar.view;
 
-import static racingcar.model.car.exception.NameExceptionType.*;
 import static racingcar.model.car.exception.NameExceptionType.SPLIT_REGEX_MUST_COMMA;
 import static racingcar.model.car.exception.NameExceptionType.VEHICLE_NAME_MUST_LETTER;
+import static racingcar.model.car.exception.NameExceptionType.VEHICLE_NAME_MUST_NOT_BLANK;
 import static racingcar.model.game.exception.GameExceptionType.GAME_COUNT_MUST_OVER_ZERO;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import racingcar.model.car.exception.NameException;
-import racingcar.model.car.exception.NameExceptionType;
 import racingcar.model.game.exception.GameException;
+import racingcar.model.game.exception.GameExceptionType;
 
 public class InputView {
 
@@ -33,7 +33,10 @@ public class InputView {
 
     public static String inputGameCount() {
         String gameCount = Console.readLine();
-        validateGameCount(gameCount);
+
+        validateIsDigit(gameCount);
+        validateIsOverZero(gameCount);
+
         return gameCount;
     }
 
@@ -62,7 +65,13 @@ public class InputView {
         }
     }
 
-    private static void validateGameCount(String gameCount) {
+    private static void validateIsDigit(String gameCount) {
+        if (!gameCount.matches(NUMBER_REGEX)) {
+            throw new GameException(GameExceptionType.GAME_COUNT_MUST_NUMBER);
+        }
+    }
+
+    private static void validateIsOverZero(String gameCount) {
         if (Integer.parseInt(gameCount) < 0) {
             throw new GameException(GAME_COUNT_MUST_OVER_ZERO);
         }
